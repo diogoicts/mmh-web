@@ -8,7 +8,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 3rem;
-  font-wight: bold;
+  font-weight: bold;
 
   img {
     margin: -5rem 0rem 2rem 0rem;
