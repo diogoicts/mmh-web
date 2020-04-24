@@ -20,7 +20,6 @@ const Login = () => {
         <Container>
             <img src={codese_logo} alt='Codese Logo' />
             <h1>LOGIN</h1>
-
             <button onClick={chama}>teste de chamada</button>
         </Container>
     )
