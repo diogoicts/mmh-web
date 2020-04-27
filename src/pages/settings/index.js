@@ -3,14 +3,14 @@ import React from 'react';
 import Layout from '../../components/layout'
 import { Container } from './styles';
 
-const Dashboard = () => {
+const Settings = () => {
     return (
         <Layout>
             <Container>
-                Dashboard
+                Configurações
             </Container>
         </Layout>
     )
 }
 
-export default Dashboard;
+export default Settings;
