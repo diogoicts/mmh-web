@@ -15,6 +15,15 @@ export default createGlobalStyle`
     outline: 0;
   }
 
+  html, body, #root {
+    height: 100%;
+  }
+
+  // Para facilitar a conversão px -> rem 
+  html {
+    font-size: 62.5%;
+  }
+
   body {
     font: 14px 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
