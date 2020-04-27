@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import { Container } from './styles';
 import codese_logo from '../../assets/codese_logo.svg'

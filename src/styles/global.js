@@ -21,6 +21,11 @@ export default createGlobalStyle`
     height: 100%;
   }
 
+  // Para facilitar a conversão px -> rem 
+  html {
+    font-size: 62.5%;
+  }
+
   body {
     -webkit-font-smoothing: antialiased;
   }
