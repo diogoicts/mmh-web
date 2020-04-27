@@ -1,5 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
-
+import { createGlobalStyle } from "styled-components";
 
 // Reset CSS básico
 export default createGlobalStyle`
@@ -10,23 +9,20 @@ export default createGlobalStyle`
     padding: 0;
     outline: 0;
     box-sizing: border-box;
-    scroll-behavior: smooth;
   }
 
   *:focus {
     outline: 0;
   }
 
-  html, body, #root {
-    height: 100%;
-  }
-
   body {
+    font: 14px 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
+    background: #FFFFFF;
   }
 
-  body, input, button {
-    font: 14px 'Roboto', sans-serif;
+  textarea, input, button {
+    font: 400 14px 'Roboto', sans-serif;
   }
 
   a {
@@ -41,4 +37,7 @@ export default createGlobalStyle`
     cursor: pointer;
   }
 
+  .input {
+    width: 100%;
+  }
 `;
