@@ -64,9 +64,16 @@ const Menu = () => {
         }
       </MenuButtons>
       <MenuFooter>
-        <div>
-          <img src={exit_icon} alt='Sair' />
-        </div>
+        <NavLink
+          to={'/'}
+          key={'Sair'}
+        >
+          <MenuToolTip title={'Sair'} placement='right-start'>
+            <div>
+              <img src={exit_icon} alt='Sair' />
+            </div>
+          </MenuToolTip>
+        </NavLink>
       </MenuFooter>
     </Container>
   )
