@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Container, Header, Body, Card, Footer } from './styles';
 
-import place_icon from '../../assets/place_icon.svg'
+import place_icon from '../../../assets/place_icon.svg'
 
 const DashboardHistory = () => {
 
@@ -76,7 +76,7 @@ const DashboardHistory = () => {
       <Body>
         {
           data.map(item => (
-            <Card>
+            <Card key={data.indexOf(item)}>
               <h5>{item.date}</h5>
               <div>
                 <div>
