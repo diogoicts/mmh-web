@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 
 // Reset CSS básico
 export default createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
   * {
     margin: 0;
@@ -31,8 +31,9 @@ export default createGlobalStyle`
   }
 
   body, input, button {
-    font: 14px 'Roboto', sans-serif;
+    font: 14px 'Montserrat', sans-serif;
   }
+
 
   a {
     text-decoration: none;
