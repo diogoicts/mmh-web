@@ -12,7 +12,7 @@ export const Container = styled.div`
   padding: 2rem 0rem 0rem 3rem;
 
   // Animações
-  
+
   @-webkit-keyframes fadeIn {
     0% { opacity: 0; }
     100% { opacity: 1; } 
@@ -32,8 +32,9 @@ export const Container = styled.div`
 
     -webkit-animation: fadeIn 1s ease-in-out;
     -moz-animation: fadeIn 1s ease-in-out;
-    -o-animation: fadeIn 1s ease-in-out;
+    -o-animation: fadeIn 1s ease-in-out;    
     animation: fadeIn 1s ease-in-out;
+
 `;
 
 export const Values = styled.div`
