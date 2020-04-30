@@ -6,29 +6,46 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
 
-  img {
-    width: 213,95px;
-    height: 122.59px;
+export const Banner = styled.div`
+  width: 100%;
+  height: 100vh;
+  .banner {
+    width: 100%;
+    height: 100%;
   }
 `;
 
-export const SectionForm = styled.div`
+export const LoginUser = styled.div`
   width: 100%;
-  max-width: 350px;
-  margin-right: 30px;
-  margin-left: 50px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  .logo_manaus {
+    width: 233, 95px;
+    height: 142.59px;
+  }
 
   form {
-    margin-top: 100px;
+    width: 60%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
   }
 
-  h1 {
-    font-size: 30px;
-    margin-bottom: 32px;
-    color:  #3857A3;
+  .textField {
+    width: 100%;
   }
-  
+
+  .forpass {
+    margin-top: 15px;
+    font-size: 12px;
+  }
   .button {
     margin-top: 36px;
     margin-left: 22%;
@@ -36,23 +53,12 @@ export const SectionForm = styled.div`
     height: 40px;
     border-radius: 15px;
     font-weight: 700;
-    margin-top: 16px;
+    font-size: 18px;
     display: inline-block;
   }
 
-  .forpass {
-    margin-top: 15px;
-    font-size: 12px;
+  h1 {
+    color: #3857A3;
+    margin-bottom: 15px
   }
-
 `;
-
-export const Banner = styled.div`
-  width:100%;
-  /* max-width: 1120px; */
-  height: 100vh;
-  .banner {
-    width: 100%;
-    height: 100%;
-  }
-`

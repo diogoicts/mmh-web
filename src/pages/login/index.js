@@ -1,45 +1,27 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-
-import { Container, SectionForm, Banner } from "./styles";
+import { Container, SectionForm, Banner, LoginUser } from "./styles";
 import clsx from "clsx";
 import IconButton from "@material-ui/core/IconButton";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
-import TextField from "@material-ui/core/TextField";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import { makeStyles } from "@material-ui/core/styles";
-import Button from '@material-ui/core/Button';
+import Button from "@material-ui/core/Button";
 
 import manaus_logo from "../../assets/img_logo_manaus.png";
 import img_card from "../../assets/img_login.png";
 
-
-
 import api from "../../services/api";
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: "flex",
-    flexWrap: "wrap"
-  },
-  margin: {
-    // margin: theme.spacing(1)'
-  },
-  withoutLabel: {
-    marginTop: theme.spacing(3)
-  },
-  textField: {
-    width: "100%"
-  }
-}));
+const style = {
+  fontSize: 20
+};
 
-const Login = () => {
-  const classes = useStyles();
+const Login = () => {     
   const [values, setValues] = React.useState({
     amount: "",
     password: "",
@@ -48,6 +30,7 @@ const Login = () => {
     showPassword: false
   });
 
+  
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
   };
@@ -71,24 +54,28 @@ const Login = () => {
 
   return (
     <Container>
-      <SectionForm>
-      <img src={manaus_logo} alt="Manaus mais Humana" />
+      <LoginUser>
+        <img
+          src={manaus_logo}
+          className="logo_manaus"
+          alt="Manaus mais Humana"
+        />
         <form>
-   
           <h1>Acesse sua conta</h1>
-         
-          <TextField
-            id="standard-search"
-            label="Digite seu e-mail"
-            type="email"
-            placeholder="Ex: nome@exemplo.com"
-            className="input"
-          />
-         <FormControl className={clsx(classes.margin, classes.textField)}>
-            <InputLabel htmlFor="standard-adornment-password">
+
+           <FormControl>
+            <InputLabel htmlFor="login" style={style}>
+            Digite seu e-mail
+            </InputLabel>
+            <Input  placeholder="Ex: nome@exemplo.com" style={style} id="login" type="email" />
+          </FormControl>
+
+          <FormControl>
+            <InputLabel htmlFor="standard-adornment-password" style={style}>
               Digite sua senha
             </InputLabel>
             <Input
+              style={style}
               id="standard-adornment-password"
               type={values.showPassword ? "text" : "password"}
               value={values.password}
@@ -106,17 +93,19 @@ const Login = () => {
               }
             />
             <Link className="forpass" to="/forgot_password">
-              Esqueci minha senha 
+              Esqueci minha senha
             </Link>
           </FormControl>
-          <Button className="button" variant="contained" color="primary">
-            Entrar
-          </Button>
+
+          <Link to="/dashboard">
+            <Button className="button" variant="contained" color="primary">
+              Entrar
+            </Button>
+          </Link>
         </form>
-      </SectionForm>
-      
+      </LoginUser>
       <Banner>
-         <img src={img_card} alt="Banner" className="banner" />
+        <img src={img_card} alt="Banner" className="banner" />
       </Banner>
     </Container>
   );

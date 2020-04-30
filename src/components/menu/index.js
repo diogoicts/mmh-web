@@ -65,7 +65,7 @@ const Menu = () => {
       </MenuButtons>
       <MenuFooter>
         <NavLink
-          to={'/'}
+          to={'/Login'}
           key={'Sair'}
         >
           <MenuToolTip title={'Sair'} placement='right-start'>
