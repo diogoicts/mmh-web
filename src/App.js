@@ -5,12 +5,16 @@ import Routes from "./routes";
 import history from "./services/history";
 
 import GlobalStyle from "./styles/global";
+//import useWindowSize from "./styles/optional-desktop-responsive"
 
 const App = () => {
+
+  const rate = 62.5 //useWindowSize()
+
   return (
     <Router history={history}>
       <Routes></Routes>
-      <GlobalStyle />
+      <GlobalStyle rate={rate} />
     </Router>
   );
 };

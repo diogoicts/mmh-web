@@ -1,6 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
 
-
 // Reset CSS básico
 export default createGlobalStyle`
 
@@ -20,9 +19,10 @@ export default createGlobalStyle`
     height: 100%;
   }
 
-  // Para facilitar a conversão px -> rem 
+  
   html {
-    font-size: 62.5%;
+    /*font-size: 62.5%; */ /* Para facilitar a conversão px -> rem */ 
+    font-size: ${props => props.rate}%; /* Outra forma de fazer a resposividade para desktops */
   }
 
   body {

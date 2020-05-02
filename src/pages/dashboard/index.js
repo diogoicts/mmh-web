@@ -8,6 +8,7 @@ import DashboardHistory from '../../components/dashboard/dashboardHistory'
 import GoalsBars from '../../components/dashboard/goalsBars'
 
 const Dashboard = () => {
+
     return (
         <Layout>
             <Container>

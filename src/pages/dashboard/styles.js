@@ -6,9 +6,8 @@ export const Container = styled.div`
   display: flex;
   border-radius: 4rem 0rem 0rem 4rem;
   background-color: #fff;
-
-  justify-content: row;
-
+  
+  justify-content: row;  
 `;
 
 export const MainBody = styled.div`
