@@ -1,8 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
-import { Container, SectionForm, Banner, LoginUser } from "./styles";
-import clsx from "clsx";
+import React from "react";
+import { Link, useHistory } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -12,25 +9,26 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Button from "@material-ui/core/Button";
 
+import { Container, Banner, LoginUser } from "./styles";
 import manaus_logo from "../../assets/img_logo_manaus.png";
 import img_card from "../../assets/img_login.png";
-
+import { login } from "../../services/auth";
 import api from "../../services/api";
 
 const style = {
   fontSize: 20
 };
 
-const Login = () => {     
+const Login = () => {
   const [values, setValues] = React.useState({
-    amount: "",
-    password: "",
-    weight: "",
-    weightRange: "",
-    showPassword: false
+    email:"",
+    senha: "",
+    showPassword: false,
+    error: "",
   });
 
-  
+  const history = useHistory();
+
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
   };
@@ -43,14 +41,22 @@ const Login = () => {
     event.preventDefault();
   };
 
-  async function chama() {
-    try {
-      const response = await api.get("api/test-cors");
-      alert(`${response.data}`);
-    } catch (error) {
-      console.log(error);
+
+  async function handleSignIn(e) {
+    e.preventDefault();
+    const { email, senha } = values;
+    if (!email || !senha) {
+      setValues({ ...values, error: "Preencha e-mail e senha para continuar!" });
+    } else {
+      try { 
+        const response = await api.post("/auth/login", { email, senha });
+        login(response.data.data.access_token);
+        history.push("/dashboard");
+      } catch (err) {
+        setValues({ ...values, error: "Houve um problema com o login, verifique suas credenciais"});
+      }
     }
-  }
+  };
 
   return (
     <Container>
@@ -60,14 +66,21 @@ const Login = () => {
           className="logo_manaus"
           alt="Manaus mais Humana"
         />
-        <form>
+        <form >
           <h1>Acesse sua conta</h1>
-
-           <FormControl>
+          {values.error && <p>{values.error}</p>}
+          <FormControl>
             <InputLabel htmlFor="login" style={style}>
-            Digite seu e-mail
+              Digite seu e-mail
             </InputLabel>
-            <Input  placeholder="Ex: nome@exemplo.com" style={style} id="login" type="email" />
+            <Input
+              placeholder="Ex: nome@exemplo.com"
+              value={values.email}
+              onChange={handleChange("email")}
+              style={style}
+              id="login"
+              type="email"
+            />
           </FormControl>
 
           <FormControl>
@@ -78,8 +91,8 @@ const Login = () => {
               style={style}
               id="standard-adornment-password"
               type={values.showPassword ? "text" : "password"}
-              value={values.password}
-              onChange={handleChange("password")}
+              value={values.senha}
+              onChange={handleChange("senha")}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -97,11 +110,15 @@ const Login = () => {
             </Link>
           </FormControl>
 
-          <Link to="/dashboard">
-            <Button className="button" variant="contained" color="primary">
-              Entrar
-            </Button>
-          </Link>
+          <Button
+            type="submit"
+            className="button"
+            variant="contained"
+            color="primary"
+            onClick={handleSignIn}
+          >
+            Entrar
+          </Button>
         </form>
       </LoginUser>
       <Banner>

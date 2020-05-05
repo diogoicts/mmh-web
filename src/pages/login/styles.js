@@ -35,7 +35,17 @@ export const LoginUser = styled.div`
     height: 60%;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-around; */
+    justify-content: space-around;
+  }
+
+  p {
+    color: #fff;
+    margin-bottom: 15px;
+    border: 1px solid #ff3333;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    background-color:#ff3333;
   }
 
   .textField {
