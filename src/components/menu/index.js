@@ -62,7 +62,7 @@ const Menu = () => {
       <MenuButtons>
         {
           menu_icons.map(item => (
-            <>
+            <div key={menu_icons.indexOf(item)}>
               <NavLink
                 to={item.to}
                 key={item.to}
@@ -75,7 +75,7 @@ const Menu = () => {
                   </div>
                 </MenuToolTip>
               </NavLink>
-            </>
+            </div>
           ))
         }
       </MenuButtons>

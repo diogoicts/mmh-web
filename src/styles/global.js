@@ -2,7 +2,6 @@ import { createGlobalStyle } from "styled-components";
 
 // Reset CSS básico
 export default createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,700&display=swap');
 
   * {
     margin: 0;
@@ -30,9 +29,10 @@ export default createGlobalStyle`
     background: #FFFFFF;
   }
 
-  textarea, input, button {
-    font: 400 14px 'Roboto', sans-serif;
+  textarea, body, input, button {
+    font: 14px 'Montserrat', sans-serif;
   }
+
 
   a {
     text-decoration: none;
