@@ -41,6 +41,15 @@ const Login = () => {
     event.preventDefault();
   };
 
+  function handleError (error) {
+    console.log(error);
+    if(error.status == 422){
+      setValues({ ...values, error: error.data.errors[0]});
+    }
+    if(error.status == 401){
+      setValues({ ...values, error: error.data.message });
+    }
+  }
 
   async function handleSignIn(e) {
     e.preventDefault();
@@ -52,8 +61,8 @@ const Login = () => {
         const response = await api.post("/auth/login", { email, senha });
         login(response.data.data.access_token);
         history.push("/dashboard");
-      } catch (err) {
-        setValues({ ...values, error: "Houve um problema com o login, verifique suas credenciais"});
+      } catch (error) {
+        handleError(error.response);
       }
     }
   };
