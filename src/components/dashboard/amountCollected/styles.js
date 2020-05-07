@@ -90,7 +90,7 @@ export const Chart = styled.div`
 
 export const Legend = styled.div`
   padding-top: 0.3rem;
-  width: 20vw; /* ATENÇÃO */
+  width: 18vw; /* ATENÇÃO */
 
   >div {
 

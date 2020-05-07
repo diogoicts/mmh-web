@@ -15,6 +15,16 @@ export const MainBody = styled.div`
   flex-direction: column;
   height: 100%;
   width: 72%;
+  padding: 0rem 0rem 2rem 0rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+`;
+
+export const MiddleCharts = styled.div`
+  padding: 0rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 3.2rem;
 `;
 
 export const SideHistory = styled.div`
