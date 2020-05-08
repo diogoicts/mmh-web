@@ -8,6 +8,10 @@ export const Container = styled.div`
   background-color: #fff;
   
   justify-content: row;  
+
+  @media (max-width: 480px) {
+    border-radius: 0rem;
+  }
 `;
 
 export const MainBody = styled.div`

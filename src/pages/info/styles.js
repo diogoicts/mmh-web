@@ -7,7 +7,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 3rem;
-  font-wight: bold;
+  font-weight: bold;
   background-color: #fff;
   border-radius: 4rem 0rem 0rem 4rem;
 `;
