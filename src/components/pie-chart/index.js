@@ -5,7 +5,7 @@ import { ResponsivePie } from '@nivo/pie'
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-export const PieChart = ({ data, colors}) => {
+export const PieChart = ({ data, colors, horizontalLength}) => {
   
   const margin = 25
 
@@ -27,7 +27,7 @@ export const PieChart = ({ data, colors}) => {
         radialLabelsTextColor="#3857A3"
         radialLabelsLinkOffset={0}
         radialLabelsLinkDiagonalLength={0}
-        radialLabelsLinkHorizontalLength={5}
+        radialLabelsLinkHorizontalLength={horizontalLength || 5}
         radialLabelsLinkStrokeWidth={1}
         radialLabelsLinkColor={'#3857A3'}
         theme={{labels: {text: {fontSize: 12, fontWeight: 'bold'}}}}

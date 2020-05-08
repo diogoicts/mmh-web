@@ -6,12 +6,13 @@ export const Container = styled.div`
   flex-direction: column;
 
   >div {
-
+    
     &:first-child {
       display: flex;
       justify-content: space-between;
       margin-bottom: 2rem;
       font-size: 1.6rem;
+      height: 2rem;
 
       h4 {
         color: #0D2662;

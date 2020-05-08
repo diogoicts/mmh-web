@@ -12,6 +12,7 @@ export const Container = styled.div`
       justify-content: space-between;
       margin-bottom: 2rem;
       font-size: 1.6rem;
+      height: 2rem;
 
       h4 {
         color: #0D2662;

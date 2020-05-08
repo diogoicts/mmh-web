@@ -46,7 +46,7 @@ const NeighborhoodChart = () => {
       </div>
       <NeighList>
         <div>
-          <PieChart data={data} colors={colors} />
+          <PieChart data={data} colors={colors} horizontalLength={10} />
         </div>
         <div>
           {
