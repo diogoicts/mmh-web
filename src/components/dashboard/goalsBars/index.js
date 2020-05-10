@@ -28,7 +28,7 @@ const GoalsBars = () => {
       <div>
         {
           data.map(item => (
-            <Bar width={(item.status/item.goal).toFixed(2)*100} >
+            <Bar key={data.indexOf(item)} width={(item.status/item.goal).toFixed(2)*100} >
               <div>
                 <label>{item.label}</label>
                 <h4>{`${item.status}/${item.goal}`}</h4>

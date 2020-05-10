@@ -9,7 +9,7 @@ export const Container = styled.div`
   border-radius: 2rem;
   margin: 0rem 3rem;
   color: #3857A3;
-  padding: 2rem 0rem 0rem 3rem;
+  padding: 1.5rem 0rem 1.5rem 3rem;
 
   // Animações
 
@@ -39,6 +39,7 @@ export const Container = styled.div`
 
 export const Values = styled.div`
   height: 100%;
+  padding-top: 0.5rem;
 
   h1 {
     font-size: 2.4rem;
@@ -74,10 +75,53 @@ export const Values = styled.div`
   }
 `;
 
+export const ChartAndLegend = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+
 export const Chart = styled.div`
-  
+  background-color: #F0C768;
+  width: 25rem;
+  height: 19rem;
+  border-radius: 2rem;
+  margin-right: 2rem;
 `;
 
 export const Legend = styled.div`
-  
+  padding-top: 0.3rem;
+  width: 18vw; /* ATENÇÃO */
+
+  >div {
+
+    h4 {
+      font-size: 1.6rem;
+      font-weight: 500;
+    }
+
+    &:first-child {
+      div {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 1rem;
+
+        img {
+          width: 1.83rem;
+          height: 1.4rem;
+          margin-right: 0.5rem;
+        }
+      }
+    }
+
+    &:last-child {
+      display: flex;
+      justify-content: flex-end;
+      img {
+        margin:0rem -2rem -4rem 0rem;
+        width: 26.225rem;
+        height: 16rem;
+      }
+      
+    }
+  }
 `;
