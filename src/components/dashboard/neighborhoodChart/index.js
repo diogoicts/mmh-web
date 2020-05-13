@@ -51,7 +51,7 @@ const NeighborhoodChart = () => {
         <div>
           {
             data.map(neighb => (
-              <Neighborhood id={neighb.id} color={neighb.color}>
+              <Neighborhood key={neighb.label} color={neighb.color}>
                 <div />
                 <p>{neighb.label}</p>
               </Neighborhood>

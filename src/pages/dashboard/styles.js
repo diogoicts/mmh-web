@@ -22,13 +22,33 @@ export const MainBody = styled.div`
   padding: 0rem 0rem 2rem 0rem;
   overflow-y: auto;
   overflow-x: hidden;
+
+  
+  @media (max-width: 480px) {
+    width: 100%;
+  }
 `;
 
 export const MiddleCharts = styled.div`
   padding: 0rem 3rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 3.2rem;
+  max-width: 100%;
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  > div {
+    width: 48%;
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+
+    > div {
+      width: 100%;
+    }
+  }
+  
 `;
 
 export const SideHistory = styled.div`
@@ -37,4 +57,8 @@ export const SideHistory = styled.div`
   height: 100%;
   background-color: #F7F7FF;
   width: 28%;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;

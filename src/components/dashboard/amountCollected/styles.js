@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 22rem;
+  min-height: 22rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -10,6 +10,11 @@ export const Container = styled.div`
   margin: 0rem 3rem;
   color: #3857A3;
   padding: 1.5rem 0rem 1.5rem 3rem;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    min-height: 45rem;
+  }
 
   // Animações
 
@@ -78,6 +83,11 @@ export const Values = styled.div`
 export const ChartAndLegend = styled.div`
   display: flex;
   flex-direction: row;
+
+  @media (max-width: 480px) {
+    width: 100%;
+    flex-direction: column;
+  }
 `
 
 export const Chart = styled.div`
@@ -86,6 +96,12 @@ export const Chart = styled.div`
   height: 19rem;
   border-radius: 2rem;
   margin-right: 2rem;
+
+  @media (max-width: 480px) {
+    width: 25rem;
+    height: 14rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 export const Legend = styled.div`
@@ -104,10 +120,11 @@ export const Legend = styled.div`
         display: flex;
         flex-direction: row;
         margin-bottom: 1rem;
+        align-items: center;
 
         img {
-          width: 1.83rem;
-          height: 1.4rem;
+          min-width: 1.83rem;
+          min-height: 1.4rem;
           margin-right: 0.5rem;
         }
       }
@@ -122,6 +139,24 @@ export const Legend = styled.div`
         height: 16rem;
       }
       
+    }
+  }
+
+  @media (max-width: 480px) {
+    > div {
+
+      &:first-child {
+        display: flex;
+        flex-direction: row;
+        width: 20rem;
+        justify-content: space-between;
+      }
+
+      &:last-child {
+        img {
+          display: none;
+        }
+      }
     }
   }
 `;
