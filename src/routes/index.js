@@ -8,6 +8,7 @@ import Login from "../pages/login";
 import Profile from "../pages/profile";
 import Settings from "../pages/settings";
 import Info from "../pages/info";
+import ResetPassword from "../pages/ResetPassword";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -28,8 +29,8 @@ const Routes = props => {
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/login" component={Login} />
-        {/* <PrivateRoute path="/dashboard" component={Dashboard} /> */}
-        <Route path="/dashboard" component={Dashboard} />
+        <Route exact path="/forgot_password" component={ResetPassword} />
+        <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute exact path="/profile" component={Profile} />
         <PrivateRoute exact path="/settings" component={Settings} />
         <PrivateRoute exact path="/info" component={Info} /> */}   
