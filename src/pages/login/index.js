@@ -43,10 +43,10 @@ const Login = () => {
 
   function handleError (error) {
     console.log(error);
-    if(error.status == 422){
+    if(error.status === 422){
       setValues({ ...values, error: error.data.errors[0]});
     }
-    if(error.status == 401){
+    if(error.status === 401){
       setValues({ ...values, error: error.data.message });
     }
   }
