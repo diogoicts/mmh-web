@@ -26,9 +26,18 @@ export const MainBody = styled.div`
 
 export const MiddleCharts = styled.div`
   padding: 0rem 3rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 3.2rem;
+  /* display: grid; */
+  /* grid-template-columns: 1fr 1fr; */
+  /* grid-gap: 3.2rem; */
+  max-width: 100%;
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  >div {
+    width: 48%;
+  }
 `;
 
 export const SideHistory = styled.div`

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 22rem;
+  min-height: 22rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -86,6 +86,8 @@ export const Chart = styled.div`
   height: 19rem;
   border-radius: 2rem;
   margin-right: 2rem;
+
+  font-size: 1.2rem !important;
 `;
 
 export const Legend = styled.div`
