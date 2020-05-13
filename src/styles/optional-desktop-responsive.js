@@ -1,4 +1,5 @@
 import {useState, useEffect} from "react";
+import { useMediaPredicate } from "react-media-hook";
 
 // Função que monitora a largura atual do dispositivo onde
 // a aplicação está sendo exibida e retorna um valor em 
@@ -7,6 +8,7 @@ import {useState, useEffect} from "react";
 // Hook
 export default function useWindowSize() {
   const isClient = typeof window === 'object';
+  const smallerThan480 = useMediaPredicate("(max-width: 480px)");
 
   function getSize() {
     return {
@@ -31,6 +33,6 @@ export default function useWindowSize() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Empty array ensures that effect is only run on mount and unmount
 
-  return windowSize.width*62.5/1440;
+  return smallerThan480? windowSize.width*62.5/375 : windowSize.width*62.5/1440;
 }
 

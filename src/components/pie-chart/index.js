@@ -30,7 +30,7 @@ export const PieChart = ({ data, colors, horizontalLength}) => {
         radialLabelsLinkHorizontalLength={horizontalLength || 5}
         radialLabelsLinkStrokeWidth={1}
         radialLabelsLinkColor={'#3857A3'}
-        theme={{labels: {text: {fontSize: 12, fontWeight: 'bold'}}}}
+        theme={{labels: {text: {fontSize: "1.2rem", fontWeight: 'bold'}}}}
         enableSlicesLabels={false}
         animate={true}
         motionStiffness={90}

@@ -8,6 +8,8 @@ export const Container = styled.div`
 
   @media (max-width: 480px) {
     flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: hidden;
   }
 `;
 
