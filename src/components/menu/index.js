@@ -22,7 +22,7 @@ const Menu = () => {
 
   async function handleLogout (e) {
     try { 
-      const response = await api.post("/auth/logout");
+      await api.post("/auth/logout");
       logout();
       history.push("/");
     } catch (err) {
