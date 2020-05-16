@@ -1,24 +1,27 @@
 import React from 'react';
 
 import { Container, Bar } from './styles';
+import { store } from '../../../store'
 
 const GoalsBars = () => {
+
+  const { cash, basic, benefits } = store.getState().dashboard
 
   const data = [
     {
       label: 'Ajudar mais de 500 famílias',
-      status: 345,
-      goal: 500,
+      status: benefits.current,
+      goal: benefits.goal,
     },
     {
       label: 'Doar mais de 1500 cestas',
-      status: 900,
-      goal: 1500,
+      status: basic.current,
+      goal: basic.goal,
     },
     {
       label: 'Arrecadar 800 mil',
-      status: 202,
-      goal: 800,
+      status: (cash.current/1000).toFixed(0),
+      goal: (cash.goal/1000).toFixed(0),
     },
   ]
 

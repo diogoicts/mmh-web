@@ -4,64 +4,11 @@ import { Container, Header, Body, Card, Footer } from './styles';
 
 import place_icon from '../../../assets/place_icon.svg'
 
+import { store } from '../../../store'
+
 const DashboardHistory = () => {
 
-  const data = [
-    {
-      date: '20/04/2020',
-      local: 'Cook Islands',
-      name: 'Claire Richards',
-      value: 50,
-    },
-    {
-      date: '20/04/2020',
-      local: 'Cook Islands',
-      name: 'Claire Richards',
-      value: 50,
-    },
-    {
-      date: '20/04/2020',
-      local: 'Cook Islands',
-      name: 'Claire Richards',
-      value: 50,
-    },
-    {
-      date: '20/04/2020',
-      local: 'Cook Islands',
-      name: 'Claire Richards',
-      value: 50,
-    },
-    {
-      date: '20/04/2020',
-      local: 'Cook Islands',
-      name: 'Claire Richards',
-      value: 50,
-    },
-    {
-      date: '20/04/2020',
-      local: 'Cook Islands',
-      name: 'Claire Richards',
-      value: 50,
-    },
-    {
-      date: '20/04/2020',
-      local: 'Cook Islands',
-      name: 'Claire Richards',
-      value: 50,
-    },
-    {
-      date: '20/04/2020',
-      local: 'Cook Islands',
-      name: 'Claire Richards',
-      value: 50,
-    },
-    {
-      date: '20/04/2020',
-      local: 'Cook Islands',
-      name: 'Claire Richards',
-      value: 50,
-    },
-  ]
+  const { data } = store.getState().dashboard;
 
   var formatter = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
@@ -75,7 +22,7 @@ const DashboardHistory = () => {
       </Header>
       <Body>
         {
-          data.map(item => (
+          data && data.slice(0).reverse().map(item => (
             <Card key={data.indexOf(item)}>
               <h5>{item.date}</h5>
               <div>

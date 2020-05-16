@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  min-height: 22rem;
+  min-height: 24rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -92,7 +92,7 @@ export const ChartAndLegend = styled.div`
 
 export const Chart = styled.div`
   background-color: #F0C768;
-  width: 25rem;
+  width: 28rem;
   height: 19rem;
   border-radius: 2rem;
   margin-right: 2rem;

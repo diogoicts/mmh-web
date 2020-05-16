@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import { Container, Values, ChartAndLegend, Chart, Legend} from './styles';
 import PieChart from '../../pie-chart';
@@ -6,15 +7,15 @@ import blue_rect from '../../../assets/blue_rect.svg'
 import green_rect from '../../../assets/green_rect.svg'
 import houses_img from '../../../assets/houses_img.svg'
 
+import { store } from '../../../store'
+
+import { setAmount } from '../../../store/modules/dashboard/actions'
 
 const AmountCollected = () => {
 
-  const data = {
-    amount: 202000,
-    benefits: 1350,
-    basic: 450,
-    goal: 800000,
-  }
+  const { cash, basic, benefits, data } = store.getState().dashboard
+  const dispatch = useDispatch()
+  dispatch(setAmount(data))
 
   var formatter = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
@@ -25,14 +26,14 @@ const AmountCollected = () => {
     {
       "id": "amount",
       "label": 'Valor obtido',
-      "formatted": 'R$ 202 mil' /*`${formatter.format(data.amount)}`*/,
-      "value": data.amount,
+      "formatted": `R$ ${(cash.current/1000).toFixed(0)} mil`,
+      "value": cash.current,
     },
     {
       "id": "goal",
       "label": 'Faltam',
       "formatted": `R$ 800 mil`,
-      "value": data.goal - data.amount,
+      "value": cash.goal - cash.current,
     },
   ] 
  
@@ -40,9 +41,9 @@ const AmountCollected = () => {
     <Container>
       <Values>
         <h1>Valor arrecadado</h1>
-        <h2>{formatter.format(data.amount)}</h2>
-        <h3>+{data.benefits}<span>&nbsp;pessoas beneficiadas</span></h3>
-        <h4>+{data.basic}<span>&nbsp;cestas básicas doadas</span></h4>
+        <h2>{formatter.format(cash.current)}</h2>
+        <h3>+{benefits.current}<span>&nbsp;pessoas beneficiadas</span></h3>
+        <h4>+{basic.current}<span>&nbsp;cestas básicas doadas</span></h4>
       </Values>
       <ChartAndLegend>
         <Chart>

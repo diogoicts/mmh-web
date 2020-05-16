@@ -37,7 +37,7 @@ const LineChart = ({ data }) => {
         theme={theme}
         margin={{ top: 50, right: 40, bottom: 50, left: 70 }}
         xScale={{ type: 'point' }}
-        yScale={{ type: 'linear', min: 0, max: 20000, stacked: true, reverse: false }} // Alterar os limites no futuro de acordo com o data
+        yScale={{ type: 'linear', min: 0, max: 100000, stacked: true, reverse: false }} // Alterar os limites no futuro de acordo com o data
         axisTop={null}
         axisRight={null}
         axisBottom={{
