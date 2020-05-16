@@ -188,12 +188,12 @@ const INITIAL_STATE = {
     goal: 800000,
   },
   basic: {
-    current: 130,
-    goal: 450,
+    current: 2320,
+    goal: 4500,
   },
   benefits: {
-    current: 345,
-    goal: 1350,
+    current: 6960,
+    goal: 13500,
   },
   months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto'],
   byMonth: [],

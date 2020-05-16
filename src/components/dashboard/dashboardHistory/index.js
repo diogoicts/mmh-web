@@ -23,7 +23,8 @@ const DashboardHistory = () => {
       <Body>
         {
           data && data.slice(0).reverse().map(item => (
-            <Card key={data.indexOf(item)}>
+            <>
+            {item.value > 0? <Card key={data.indexOf(item)}>
               <h5>{item.date}</h5>
               <div>
                 <div>
@@ -35,7 +36,8 @@ const DashboardHistory = () => {
                   <h4>{formatter.format(item.value)}</h4>
                 </div>
               </div>
-            </Card>
+            </Card> : <></>}
+            </>
           ))
         }
       </Body>
