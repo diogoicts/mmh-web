@@ -7,16 +7,21 @@ import history from "./services/history";
 import GlobalStyle from "./styles/global";
 import useWindowSize from "./styles/optional-desktop-responsive"
 
+import { Provider } from 'react-redux';
+import { store } from './store'
+
 const App = () => {
 
   //const rate = 62.5
   const rate = useWindowSize()
 
   return (
-    <Router history={history}>
-      <Routes></Routes>
-      <GlobalStyle rate={rate} />
-    </Router>
+    <Provider store={store}>
+      <Router history={history}>
+        <Routes></Routes>
+        <GlobalStyle rate={rate} />
+      </Router>
+    </Provider>
   );
 };
 

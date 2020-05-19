@@ -14,7 +14,6 @@ const Dashboard = () => {
     return (
         <Layout>
             <Container>
-
                 <MainBody>
                     <DashboardHeader />
                     <AmountCollected />
