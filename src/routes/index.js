@@ -8,7 +8,7 @@ import Login from "../pages/login";
 import Profile from "../pages/profile";
 import Settings from "../pages/settings";
 import Info from "../pages/info";
-import ResetPassword from "../pages/ResetPassword";
+import ResetPassword from "../pages/reset-password";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route

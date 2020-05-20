@@ -5,7 +5,7 @@ export const Container = styled.div`
   height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: sspace-between;
 `;
 
 export const Banner = styled.div`
