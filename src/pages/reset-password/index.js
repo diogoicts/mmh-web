@@ -3,6 +3,7 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Input from "@material-ui/core/Input";
 import Button from "@material-ui/core/Button";
+import Bugsnag from '@bugsnag/js'
 
 import { Container } from "./styles";
 import manaus_logo from "../../assets/img_logo_manaus.png";
@@ -21,17 +22,18 @@ const ResetPassword = () => {
   });
 
   function handleError(error) {
-    console.log(error);
     if (error.status === 422) {
       setValues({ ...values, error: error.data.errors[0] });
     }
     if (error.status === 401) {
       setValues({ ...values, error: error.data.message });
     }
+    Bugsnag.notify(new Error(error))
   }
 
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
+  
   };
 
   async function handleResetPassword(e) {
