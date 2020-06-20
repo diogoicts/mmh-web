@@ -30,6 +30,7 @@ export const Container = styled.div`
 
   span {
       color: red;
+      font-size: 1.2rem;
     }
 
   select, input {
@@ -52,6 +53,10 @@ export const Container = styled.div`
     background-position-x: 92%;
     background-size: 1.6rem 1rem;
     align-items: center;
+  }
+
+  @media(max-width: 480px) {
+    border-radius: 0rem;
   }
 `;
 
@@ -82,6 +87,16 @@ export const Line = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1.3rem;
+  }
+
+  @media(max-width: 480px) {
+    grid-template-columns: 1fr;
+    grid-gap: 0rem;
+
+    .halfgrid {
+      grid-template-columns: 1fr;
+      grid-gap: 0rem;
+    }
   }
 `;
 

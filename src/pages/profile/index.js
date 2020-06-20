@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { Form } from '@rocketseat/unform'
 import Layout from '../../components/layout'
 import { Container, Header, Line, Footer } from './styles';
@@ -17,125 +17,125 @@ const Profile = () => {
 	const [activities, setActivities] = useState(true)
 	const [typeActivities, setTypeActivities] = useState(['Online', 'Presencial'])
 
-	const neighborhoods = [
-		'Adrianópolis'
-		, 'Águas Claras'
-		, 'Aleixo'
-		, 'Alfredo Nascimento'
-		, 'Alvorada'
-		, 'Alvorada 2'
-		, 'Amadeu Botelho'
-		, 'Aparecida'
-		, 'Armando Mendes'
-		, 'Betânia'
-		, 'Cachoeirinha'
-		, 'Campos Sales'
-		, 'Centro'
-		, 'Chapada'
-		, 'Cidade de Deus'
-		, 'Cidade Nova'
-		, 'Cidade Nova 2'
-		, 'Cidade Nova 3'
-		, 'Cidade Nova 5'
-		, 'Colônia Antônio Aleixo'
-		, 'Colônia Cachoeira Grande'
-		, 'Colônia Oliveira Machado'
-		, 'Colônia Santo Antônio'
-		, 'Colônia Terra Nova'
-		, 'Compensa 1'
-		, 'Compensa 2'
-		, 'Compensa 3'
-		, 'Conjunto João Paulo II'
-		, 'Coroado'
-		, 'Crespo'
-		, 'Da Paz'
-		, 'Distrito Industrial 1'
-		, 'Distrito Industrial 2'
-		, 'Dom Pedro'
-		, 'Educandos'
-		, 'Fazendinha'
-		, 'Flores'
-		, 'Francisca Mendes'
-		, 'Gilberto Mestrinho'
-		, 'Glória'
-		, 'Grande Vitória'
-		, 'Japiim'
-		, 'Jorge Teixeira'
-		, 'Lago Azul'
-		, 'Lírio do Vale'
-		, 'Lírio do Vale 2'
-		, 'Mauazinho'
-		, 'Monte das Oliveiras'
-		, 'Monte Pascoal'
-		, 'Morro da Liberdade'
-		, 'Nossa Senhora Aparecida'
-		, 'Nossa Senhora das Graças'
-		, 'Nova Cidade'
-		, 'Nova Floresta'
-		, 'Nova Vitória'
-		, 'Nova Esperança'
-		, 'Novo Aleixo'
-		, 'Novo Israel'
-		, 'Novo Reino'
-		, 'Parque 10 de Novembro'
-		, 'Parque das Laranjeiras'
-		, 'Parque das Nações'
-		, 'Petrópolis'
-		, 'Planalto'
-		, 'Ponta Negra'
-		, 'Praça 14 de Janeiro'
-		, 'Presidente Vargas'
-		, 'Puraquequara'
-		, 'Raiz'
-		, 'Redenção'
-		, 'Santa Etelvina'
-		, 'Santa Inês'
-		, 'Santa Luzia'
-		, 'Santo Agostinho'
-		, 'Santo Antônio'
-		, 'São Francisco'
-		, 'São Geraldo'
-		, 'São Jorge'
-		, 'São José Operário'
-		, 'São Lázaro'
-		, 'São Raimundo'
-		, 'Tancredo Neves'
-		, 'Tarumã'
-		, 'Tarumã-Açu'
-		, 'Valparaíso'
-		, 'Vila Buriti'
-		, 'Vila da Prata'
-		, 'Zumbi dos Palmares'
+	const neighborhoods = useMemo(() => 
+		[
+			'Adrianópolis'
+			, 'Águas Claras'
+			, 'Aleixo'
+			, 'Alfredo Nascimento'
+			, 'Alvorada'
+			, 'Alvorada 2'
+			, 'Amadeu Botelho'
+			, 'Aparecida'
+			, 'Armando Mendes'
+			, 'Betânia'
+			, 'Cachoeirinha'
+			, 'Campos Sales'
+			, 'Centro'
+			, 'Chapada'
+			, 'Cidade de Deus'
+			, 'Cidade Nova'
+			, 'Cidade Nova 2'
+			, 'Cidade Nova 3'
+			, 'Cidade Nova 5'
+			, 'Colônia Antônio Aleixo'
+			, 'Colônia Cachoeira Grande'
+			, 'Colônia Oliveira Machado'
+			, 'Colônia Santo Antônio'
+			, 'Colônia Terra Nova'
+			, 'Compensa 1'
+			, 'Compensa 2'
+			, 'Compensa 3'
+			, 'Conjunto João Paulo II'
+			, 'Coroado'
+			, 'Crespo'
+			, 'Da Paz'
+			, 'Distrito Industrial 1'
+			, 'Distrito Industrial 2'
+			, 'Dom Pedro'
+			, 'Educandos'
+			, 'Fazendinha'
+			, 'Flores'
+			, 'Francisca Mendes'
+			, 'Gilberto Mestrinho'
+			, 'Glória'
+			, 'Grande Vitória'
+			, 'Japiim'
+			, 'Jorge Teixeira'
+			, 'Lago Azul'
+			, 'Lírio do Vale'
+			, 'Lírio do Vale 2'
+			, 'Mauazinho'
+			, 'Monte das Oliveiras'
+			, 'Monte Pascoal'
+			, 'Morro da Liberdade'
+			, 'Nossa Senhora Aparecida'
+			, 'Nossa Senhora das Graças'
+			, 'Nova Cidade'
+			, 'Nova Floresta'
+			, 'Nova Vitória'
+			, 'Nova Esperança'
+			, 'Novo Aleixo'
+			, 'Novo Israel'
+			, 'Novo Reino'
+			, 'Parque 10 de Novembro'
+			, 'Parque das Laranjeiras'
+			, 'Parque das Nações'
+			, 'Petrópolis'
+			, 'Planalto'
+			, 'Ponta Negra'
+			, 'Praça 14 de Janeiro'
+			, 'Presidente Vargas'
+			, 'Puraquequara'
+			, 'Raiz'
+			, 'Redenção'
+			, 'Santa Etelvina'
+			, 'Santa Inês'
+			, 'Santa Luzia'
+			, 'Santo Agostinho'
+			, 'Santo Antônio'
+			, 'São Francisco'
+			, 'São Geraldo'
+			, 'São Jorge'
+			, 'São José Operário'
+			, 'São Lázaro'
+			, 'São Raimundo'
+			, 'Tancredo Neves'
+			, 'Tarumã'
+			, 'Tarumã-Açu'
+			, 'Valparaíso'
+			, 'Vila Buriti'
+			, 'Vila da Prata'
+			, 'Zumbi dos Palmares'
+		], [])
 
-	]
-
-	const neighborhoodsObj = neighborhoods.map(neighborhood => {
+	const neighborhoodsObj = useMemo(() => neighborhoods.map(neighborhood => {
 		var obj = {}
 		obj.id = neighborhoods.indexOf(neighborhood) + 1
 		obj.title = neighborhood
 
 		return obj
-	})
+	}), [neighborhoods])
 
-	const marialStatus = [
+	const marialStatus = useMemo(() => [
 		{ id: '1', title: 'Casado(a)' },
 		{ id: '2', title: 'Divorciado(a)' },
 		{ id: '3', title: 'Separado(a)' },
 		{ id: '4', title: 'Solteiro(a)' },
 		{ id: '5', title: 'União estável' },
 		{ id: '6', title: 'Viúvo(a)' }
-	]
+	], [])
 
-	const houseStatus = [
+	const houseStatus = useMemo(() => [
 		{ id: '1', title: 'Própria' },
 		{ id: '2', title: 'Alugada' },
 		{ id: '3', title: 'Parente/Amigo' }
-	]
+	], [])
 
-	const job = [
+	const job = useMemo(() => [
 		{ id: '1', title: 'CLT' },
 		{ id: '2', title: 'Autônomo' }
-	]
+	], [])
 
 	const schema = Yup.object().shape({
 		name: Yup.string().required('O nome é obrigatório'),
@@ -172,17 +172,58 @@ const Profile = () => {
 		nation: Yup.string()
 			.required('A nacionalidade é obrigatória'),
 		coliving: Yup.string(),
-		houseStatus: Yup.string(),
+		house_status: Yup.string(),
 		income: Yup.string(),
 	});
 
-	function handleSubmit(data) {
-		console.log('Teste')
-		// console.log(data)
-		console.log(data)
-	}
+	const handleSubmit = useCallback((data) => {
 
-	function mask(i, type) {
+		const birth = `${data.birth.slice(-4)}-${data.birth.slice(4, 6)}-${data.birth.slice(0, 2)}`
+		const date = new Date()
+
+		const body = {
+			"parceiro_id": 1,
+			"nome": data.name,
+			"cpf": data.cpf,
+			"email": data.email,
+			"data_nascimento": birth,
+			"trabalho": data.job,
+			"esta_desempregado": employed,
+			"estado_civil_id": data.marial,
+			"nome_conjuge": data.partner_name,
+			"cpf_conjuge": data.partner_cpf,
+			"total_residentes": data.coliving,
+			"situacao_moradia": data.house_status,
+			"renda_mensal": data.income,
+			"gostaria_montar_negocio": ownBusiness,
+			"gostaria_participar_cursos": activities,
+			"tipo_curso": typeActivities,
+			"concorda_informacoes_verdadeiras": true,
+			"data_submissao": date, //"2020-05-26 10:11:12"
+			"telefones": [
+				{
+					"telefone": data.mobile,
+					"tipo": "Celular"
+				}
+			],
+			"enderecos": [
+				{
+					"endereco": date.address,
+					"numero": date.house_number,
+					"complemento": date.compl,
+					"bairro_id": date.neighborhood,
+					"zona_id": null,
+					"cep": date.cep,
+					"cidade_id": 1
+				}
+			]
+		}
+
+		handlePostBenefited(body)
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
+
+	const mask = useCallback((i, type) => {
 		var v = i.value;
 
 		if (isNaN(v[v.length - 1])) { // impede entrar outro caractere que não seja número
@@ -220,17 +261,17 @@ const Profile = () => {
 			if (v.length === 1) i.value = 'R$ ' + v;
 			if (v === 'R$ ') i.value = '';
 		}
-	}
+	}, [])
 
-	async function handlePostBenefited (body) {
+	async function handlePostBenefited(body) {
 		try {
-			const response = await api.post('', body)
+			const response = await api.post('/beneficiarios', body)
 
-			if(response.data) {
-				
+			if (response.data) {
+
 			}
 
-		} catch(err) {
+		} catch (err) {
 
 		}
 	}
