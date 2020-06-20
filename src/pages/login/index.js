@@ -43,9 +43,11 @@ const Login = () => {
 
   function handleError (error) {
     console.log(error);
+    // eslint-disable-next-line
     if(error.status == 422){
       setValues({ ...values, error: error.data.errors[0]});
     }
+    // eslint-disable-next-line
     if(error.status == 401){
       setValues({ ...values, error: error.data.message });
     }

@@ -1,5 +1,17 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { darken } from 'polished'
+
+const appearFromTop = keyframes`
+  0%, 50% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const Container = styled.div`
   width: 100%;
@@ -7,27 +19,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  @-webkit-keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; } 
-    }
-    @-moz-keyframes fadeIn {
-    0% { opacity: 0;}
-    100% { opacity: 1; }
-    }
-    @-o-keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-    }
-    @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-    }
-
-    -webkit-animation: fadeIn 1s ease-in-out;
-    -moz-animation: fadeIn 1s ease-in-out;
-    -o-animation: fadeIn 1s ease-in-out;
-    animation: fadeIn 1s ease-in-out;
 `;
 
 export const Header = styled.div`
@@ -45,6 +36,9 @@ export const Body = styled.div`
   flex-direction: column;
   overflow-y: auto;
   padding: 0rem 2rem;
+
+  /* Animações */
+  animation: ${appearFromTop} 2s;
 `;
 
 export const Card = styled.div`

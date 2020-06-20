@@ -1,11 +1,27 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const appearFromBottom = keyframes`
+  0%, 80% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   padding: 0rem 3rem;
+  
   margin-top: 5.7rem;
+
+  /* Animações */
+  animation: ${appearFromBottom} 2s;
 
   h1 {
     font-size: 3.6rem;

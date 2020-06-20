@@ -213,6 +213,7 @@ export default function dashboard(state = INITIAL_STATE, action) {
         let amount = 0;
         let arr = [];
 
+        // eslint-disable-next-line
         action.payload.data.map((donation, idx) => {
           const data = action.payload.data
           let actualMonth = data[idx].date.slice(3, 5)

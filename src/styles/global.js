@@ -30,7 +30,7 @@ export default createGlobalStyle`
     background: #FFFFFF;
   }
 
-  textarea, body, input, button {
+  textarea, body, input, button, select {
     font: 14px 'Montserrat', sans-serif;
   }
 

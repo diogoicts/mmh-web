@@ -1,4 +1,19 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const appearAfter = 3
+const duration = 0.5
+
+const appearFromBottom = keyframes`
+  0%, ${appearAfter*100/(appearAfter + duration)}% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const Container = styled.div`
   width: 100%;
@@ -32,10 +47,10 @@ export const MainBody = styled.div`
 export const MiddleCharts = styled.div`
   padding: 0rem 3rem;
   max-width: 100%;
-  
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  animation: ${appearFromBottom} 2s;
 
   > div {
     width: 48%;
