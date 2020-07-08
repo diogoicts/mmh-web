@@ -239,7 +239,7 @@ const Profile = () => {
 		<Layout>
 			<Container>
 				<Header>
-					<h2>Cadastro de Beneficiários</h2>
+					<h2>Cadastro de Beneficiários - Teste</h2>
 				</Header>
 				<Form schema={schema} onSubmit={handleSubmit} >
 					<Line>
