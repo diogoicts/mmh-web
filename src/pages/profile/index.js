@@ -18,7 +18,7 @@ const Profile = () => {
 	const [ownBusiness, setOwnBusiness] = useState(true)
 	const [activities, setActivities] = useState(true)
 	const [typeActivities, setTypeActivities] = useState(['Online', 'Presencial'])
-	const [pageLoading, setPageLoading] = useState(true)
+	const [pageLoading, setPageLoading] = useState(false)
 
 	const neighborhoods = [
 		'Adrianópolis'
@@ -121,21 +121,22 @@ const Profile = () => {
 	})
 
 	const marialStatus = [
-		{ id: 1, title: 'Casado(a)' },
-		{ id: 2, title: 'Divorciado(a)' },
-		{ id: 3, title: 'Separado(a)' },
-		{ id: 4, title: 'Solteiro(a)' },
-		{ id: 5, title: 'União estável' },
-		{ id: 6, title: 'Viúvo(a)' }
+		{ id: '1', title: 'Casado(a)' },
+		{ id: '2', title: 'Divorciado(a)' },
+		{ id: '3', title: 'Separado(a)' },
+		{ id: '4', title: 'Solteiro(a)' },
+		{ id: '5', title: 'União estável' },
+		{ id: '6', title: 'Viúvo(a)' }
 	]
 
 	const houseStatus = [
 		{ id: '1', title: 'Própria' },
 		{ id: '2', title: 'Alugada' },
-		{ id: '3', title: 'Parente/Amigo' }
+		{ id: '3', title: 'Cedido' },
+		{ id: '4', title: 'Própria Financiada'}
 	]
 
-	const job = [
+	const jobObj = [
 		{ id: '1', title: 'CLT' },
 		{ id: '2', title: 'Autônomo' }
 	]
@@ -154,7 +155,7 @@ const Profile = () => {
 		birth: Yup.string()
 			.required('A data de nascimento é obrigatória')
 			.min(10, 'Insira a data corretamente'),
-		marial: Yup.number().required('O estado civil é obrigatório'),
+		marial: Yup.string().required('O estado civil é obrigatório'),
 		partner_name: married === '1' ? Yup.string()
 			.required('O nome do cônjuge é obrigatório') :
 			Yup.string(),
@@ -175,7 +176,7 @@ const Profile = () => {
 		nation: Yup.string()
 			.required('A nacionalidade é obrigatória'),
 		coliving: Yup.string(),
-		houseStatus: Yup.string(),
+		house_status: Yup.string(),
 		job: employed? Yup.string()
 			.required('Este item ẽ obrigatório'):
 			Yup.string(),
@@ -229,7 +230,7 @@ const Profile = () => {
 		// console.log(data)
 		console.log(data)
 
-		const {income, job, houseStatus, coliving, nation, neighborhood, compl, house_number, cep, address, partner_cpf, partner_name, marial, birth, mobile, cpf, email, name} = data
+		const {income, job, house_status, coliving, nation, neighborhood, compl, house_number, cep, address, partner_cpf, partner_name, marial, birth, mobile, cpf, email, name} = data
 
 		const body = {
 			parceiro_id: 1,
@@ -237,22 +238,22 @@ const Profile = () => {
 			cpf,
 			email,
 			data_nascimento: `${birth.slice(-4)}-${birth.slice(3,5)}-${birth.slice(0,2)}`,
-			trabalho: job,
+			trabalho: jobObj[job-1].title,
 			esta_desempregado: !employed,
 			estado_civil_id: marial,
 			nome_conjuge: partner_name || ``,
 			cpf_conjuge: partner_cpf || ``,
 			total_residentes: coliving,
-			situacao_moradia: houseStatus || `Não informado`,
-			renda_mensal: income,
+			situacao_moradia: houseStatus[house_status-1]?.title || ``,
+			renda_mensal: parseInt(income.replace(/\D/g, '')),
 			gostaria_montar_negocio: ownBusiness,
 			gostaria_participar_cursos: activities,
-			//tipo_curso: typeActivities,
+			tipo_curso: typeActivities.join(', '),
 			concorda_informacoes_verdadeiras: true,
 			// data_submissao: ,
 			telefones: [
 				{
-					telefone: mobile,
+					telefone: parseInt(mobile.replace(/\D/g, '')),
 					tipo: "Celular"
 				}
 			],
@@ -263,7 +264,7 @@ const Profile = () => {
 					complemento: compl,
 					bairro_id: neighborhood,
 					zona_id: 1,
-					cep,
+					cep: parseInt(cep.replace('-','')),
 					cidade_id: 1
 				}
 
@@ -276,39 +277,35 @@ const Profile = () => {
 	async function handlePostBenefited (body) {
 		console.log("Body")
 		console.log(body)
+		setPageLoading(true)
 
 		try {
 			const response = await api.post('/beneficiarios', {...body})
 			console.log(response)
-			response.errors.map(error => console.log(`teste`))
-
-			if(response) {
-				console.log(response)
-			}
-
 
 			if(response.data) {
 				console.log(`Sucesso`)
 				toast.success(`Beneficiário cadastrado com sucesso`)
 			} else {
-				toast.error(response.errors[0] || `Erro ao cadastrar o beneficiário`)
+				toast.error(`Erro ao cadastrar o beneficiário`)
 			}
 
 
 		} catch(error) {
-			
 			toast.error(`Erro ao cadastrar o beneficiário`)
 			console.log(error)
 			console.log(`Cathc error`)
 			console.log(error.data)
 		}
+
+		setPageLoading(false)
 	}
 
 	return (
 		<Layout>
 			<Container>
 				<Header>
-					<h2>Cadastro de Beneficiários - Teste</h2>
+					<h2>Cadastro de Beneficiários</h2>
 				</Header>
 				<Form schema={schema} onSubmit={handleSubmit} >
 					<Line>
@@ -376,7 +373,8 @@ const Profile = () => {
 								<FormSelect
 									label='Trabalho'
 									name='job'
-									options={job}
+									options={jobObj}
+									required
 								/>
 							}
 						</div>
@@ -399,8 +397,8 @@ const Profile = () => {
 						</div>
 					</Line>
 					<Footer>
-						<button type='submit'>
-							Salvar {pageLoading && <Loading />}
+						<button type='submit' disabled={pageLoading}>
+							<p>Salvar</p> {pageLoading && <Loading />}
 						</button>
 					</Footer>
 				</Form>

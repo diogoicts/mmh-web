@@ -16,7 +16,7 @@ export const Loading = () => {
 
   return (
     <div className={classes.root}>
-      <CircularProgress />
+      <CircularProgress size={20}/>
     </div>
   );
 }

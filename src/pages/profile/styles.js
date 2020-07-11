@@ -13,6 +13,10 @@ export const Container = styled.div`
   background-color: #fff;
   border-radius: 4rem 0rem 0rem 4rem;
 
+  @media (max-width: 480px) {
+    border-radius: 0rem;
+  }
+
   form {
     width: 100%;
     height: 100%;
@@ -30,6 +34,7 @@ export const Container = styled.div`
 
   span {
       color: red;
+      font-size: 1.2rem;
     }
 
   select, input {
@@ -82,7 +87,16 @@ export const Line = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1.3rem;
+
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
   }
+
+  @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+      grid-gap: 1.3rem;
+    }
 `;
 
 export const Footer = styled.div`
@@ -94,8 +108,12 @@ export const Footer = styled.div`
   margin-top: 3rem;
  
  button {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: center;
    height: 6rem;
-   width: 14.3rem;
+   width: 16.3rem;
    border: none;
    border-radius: 0.5rem;
    background-color: #ffffff;
@@ -103,11 +121,26 @@ export const Footer = styled.div`
    font-weight: 500;
    transition: background 0.2s;
 
+
    &:last-child {
    color: #FFFFFF;
    background-color: #3857A3;
 
+   p {
+     margin-right: 1rem;
+   }
+
+   .MuiCircularProgress-svg {
+     color: #ffffff;
+     
+   }
    &:hover {
+     background-color: ${shade(0.2, '#3857A3')};
+   }
+
+
+   &:disabled {
+     cursor: not-allowed;
      background-color: ${shade(0.2, '#3857A3')};
    }
    }
