@@ -7,7 +7,9 @@ import FormSelect from '../../components/Select';
 import * as Yup from 'yup';
 import FormRadio from '../../components/Radio';
 import FormCheck from '../../components/Check'
+import Loading from '../../components/Loading'
 import api from '../../services/api'
+import { toast } from 'react-toastify'
 
 const Profile = () => {
 
@@ -16,6 +18,7 @@ const Profile = () => {
 	const [ownBusiness, setOwnBusiness] = useState(true)
 	const [activities, setActivities] = useState(true)
 	const [typeActivities, setTypeActivities] = useState(['Online', 'Presencial'])
+	const [pageLoading, setPageLoading] = useState(true)
 
 	const neighborhoods = [
 		'Adrianópolis'
@@ -118,12 +121,12 @@ const Profile = () => {
 	})
 
 	const marialStatus = [
-		{ id: '1', title: 'Casado(a)' },
-		{ id: '2', title: 'Divorciado(a)' },
-		{ id: '3', title: 'Separado(a)' },
-		{ id: '4', title: 'Solteiro(a)' },
-		{ id: '5', title: 'União estável' },
-		{ id: '6', title: 'Viúvo(a)' }
+		{ id: 1, title: 'Casado(a)' },
+		{ id: 2, title: 'Divorciado(a)' },
+		{ id: 3, title: 'Separado(a)' },
+		{ id: 4, title: 'Solteiro(a)' },
+		{ id: 5, title: 'União estável' },
+		{ id: 6, title: 'Viúvo(a)' }
 	]
 
 	const houseStatus = [
@@ -151,7 +154,7 @@ const Profile = () => {
 		birth: Yup.string()
 			.required('A data de nascimento é obrigatória')
 			.min(10, 'Insira a data corretamente'),
-		marial: Yup.string().required('O estado civil é obrigatório'),
+		marial: Yup.number().required('O estado civil é obrigatório'),
 		partner_name: married === '1' ? Yup.string()
 			.required('O nome do cônjuge é obrigatório') :
 			Yup.string(),
@@ -173,14 +176,13 @@ const Profile = () => {
 			.required('A nacionalidade é obrigatória'),
 		coliving: Yup.string(),
 		houseStatus: Yup.string(),
+		job: employed? Yup.string()
+			.required('Este item ẽ obrigatório'):
+			Yup.string(),
 		income: Yup.string(),
 	});
 
-	function handleSubmit(data) {
-		console.log('Teste')
-		// console.log(data)
-		console.log(data)
-	}
+	
 
 	function mask(i, type) {
 		var v = i.value;
@@ -222,16 +224,83 @@ const Profile = () => {
 		}
 	}
 
-	async function handlePostBenefited (body) {
-		try {
-			const response = await api.post('', body)
+	function handleSubmit(data) {
+		console.log('Teste')
+		// console.log(data)
+		console.log(data)
 
-			if(response.data) {
-				
+		const {income, job, houseStatus, coliving, nation, neighborhood, compl, house_number, cep, address, partner_cpf, partner_name, marial, birth, mobile, cpf, email, name} = data
+
+		const body = {
+			parceiro_id: 1,
+			nome: name,
+			cpf,
+			email,
+			data_nascimento: `${birth.slice(-4)}-${birth.slice(3,5)}-${birth.slice(0,2)}`,
+			trabalho: job,
+			esta_desempregado: !employed,
+			estado_civil_id: marial,
+			nome_conjuge: partner_name || ``,
+			cpf_conjuge: partner_cpf || ``,
+			total_residentes: coliving,
+			situacao_moradia: houseStatus || `Não informado`,
+			renda_mensal: income,
+			gostaria_montar_negocio: ownBusiness,
+			gostaria_participar_cursos: activities,
+			//tipo_curso: typeActivities,
+			concorda_informacoes_verdadeiras: true,
+			// data_submissao: ,
+			telefones: [
+				{
+					telefone: mobile,
+					tipo: "Celular"
+				}
+			],
+			enderecos: [
+				{
+					endereco: address,
+					numero: house_number,
+					complemento: compl,
+					bairro_id: neighborhood,
+					zona_id: 1,
+					cep,
+					cidade_id: 1
+				}
+
+			]
+		}
+
+		handlePostBenefited(body)
+	}
+
+	async function handlePostBenefited (body) {
+		console.log("Body")
+		console.log(body)
+
+		try {
+			const response = await api.post('/beneficiarios', {...body})
+			console.log(response)
+			response.errors.map(error => console.log(`teste`))
+
+			if(response) {
+				console.log(response)
 			}
 
-		} catch(err) {
 
+			if(response.data) {
+				console.log(`Sucesso`)
+				toast.success(`Beneficiário cadastrado com sucesso`)
+			} else {
+				toast.error(response.errors[0] || `Erro ao cadastrar o beneficiário`)
+			}
+
+
+		} catch(error) {
+			
+			toast.error(`Erro ao cadastrar o beneficiário`)
+			console.log(error)
+			console.log(`Cathc error`)
+			console.log(error.data)
 		}
 	}
 
@@ -331,7 +400,7 @@ const Profile = () => {
 					</Line>
 					<Footer>
 						<button type='submit'>
-							Salvar
+							Salvar {pageLoading && <Loading />}
 						</button>
 					</Footer>
 				</Form>
