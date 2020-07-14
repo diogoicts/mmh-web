@@ -242,7 +242,7 @@ const Profile = () => {
 	// Funcão de submit do form e criacão do objeto de body para a requisicão.
 	function handleSubmit(data) {
 
-		const {income, job, house_status, coliving, nation, neighborhood, compl, house_number, cep, address, partner_cpf, partner_name, marial, birth, mobile, cpf, email, name} = data
+		const {income, job, house_status, coliving, neighborhood, compl, house_number, cep, address, partner_cpf, partner_name, marial, birth, mobile, cpf, email, name} = data
 
 		const body = {
 			parceiro_id: parceiro_id || 1, // Atencão. Estou colocando essa condicão apenas para podermos testar o cadastro mesmo fazendo login via MMH
