@@ -16,7 +16,7 @@ const FormCheck = (props) => {
       >
         {
           props.options.map(option => (
-            <div onClick={() => props.onChange(option, props.value)}>
+            <div key={props.options.indexOf(option)} onClick={() => props.onChange(option, props.value)}>
               {
                 !props.value.includes(option) ?
                   <div></div>

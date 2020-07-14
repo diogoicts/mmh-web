@@ -13,12 +13,17 @@ import { toast } from 'react-toastify'
 
 const Profile = () => {
 
+	// Variáveis de estado da página
+
 	const [married, setMarried] = useState(false)
 	const [employed, setEmployed] = useState(true)
 	const [ownBusiness, setOwnBusiness] = useState(true)
 	const [activities, setActivities] = useState(true)
 	const [typeActivities, setTypeActivities] = useState(['Online', 'Presencial'])
 	const [pageLoading, setPageLoading] = useState(false)
+	const parceiro_id = localStorage.getItem('@mmh/partner_id')
+
+	// Lista de bairros
 
 	const neighborhoods = [
 		'Adrianópolis'
@@ -112,6 +117,8 @@ const Profile = () => {
 
 	]
 
+	// Objeto de bairros com id numerado automaticamente.
+
 	const neighborhoodsObj = neighborhoods.map(neighborhood => {
 		var obj = {}
 		obj.id = neighborhoods.indexOf(neighborhood) + 1
@@ -119,6 +126,8 @@ const Profile = () => {
 
 		return obj
 	})
+
+	// Obeto com os estados civis possíveis
 
 	const marialStatus = [
 		{ id: '1', title: 'Casado(a)' },
@@ -129,6 +138,8 @@ const Profile = () => {
 		{ id: '6', title: 'Viúvo(a)' }
 	]
 
+	// Situacões de moradia 
+
 	const houseStatus = [
 		{ id: '1', title: 'Própria' },
 		{ id: '2', title: 'Alugada' },
@@ -136,11 +147,14 @@ const Profile = () => {
 		{ id: '4', title: 'Própria Financiada'}
 	]
 
+	// Modalidade de ocupacão
+
 	const jobObj = [
 		{ id: '1', title: 'CLT' },
 		{ id: '2', title: 'Autônomo' }
 	]
 
+	// Schema de validacão dos dados
 	const schema = Yup.object().shape({
 		name: Yup.string().required('O nome é obrigatório'),
 		email: Yup.string()
@@ -184,7 +198,7 @@ const Profile = () => {
 	});
 
 	
-
+	// Máscara para campos com formatos específicos
 	function mask(i, type) {
 		var v = i.value;
 
@@ -225,15 +239,13 @@ const Profile = () => {
 		}
 	}
 
+	// Funcão de submit do form e criacão do objeto de body para a requisicão.
 	function handleSubmit(data) {
-		console.log('Teste')
-		// console.log(data)
-		console.log(data)
 
 		const {income, job, house_status, coliving, nation, neighborhood, compl, house_number, cep, address, partner_cpf, partner_name, marial, birth, mobile, cpf, email, name} = data
 
 		const body = {
-			parceiro_id: 1,
+			parceiro_id: parceiro_id || 1, // Atencão. Estou colocando essa condicão apenas para podermos testar o cadastro mesmo fazendo login via MMH
 			nome: name,
 			cpf,
 			email,
@@ -250,7 +262,6 @@ const Profile = () => {
 			gostaria_participar_cursos: activities,
 			tipo_curso: typeActivities.join(', '),
 			concorda_informacoes_verdadeiras: true,
-			// data_submissao: ,
 			telefones: [
 				{
 					telefone: parseInt(mobile.replace(/\D/g, '')),
@@ -263,7 +274,7 @@ const Profile = () => {
 					numero: house_number,
 					complemento: compl,
 					bairro_id: neighborhood,
-					zona_id: 1,
+					zona_id: null,
 					cep: parseInt(cep.replace('-','')),
 					cidade_id: 1
 				}
@@ -274,17 +285,15 @@ const Profile = () => {
 		handlePostBenefited(body)
 	}
 
+	// Envio de dados para a API
 	async function handlePostBenefited (body) {
-		console.log("Body")
-		console.log(body)
+
 		setPageLoading(true)
 
 		try {
 			const response = await api.post('/beneficiarios', {...body})
-			console.log(response)
 
 			if(response.data) {
-				console.log(`Sucesso`)
 				toast.success(`Beneficiário cadastrado com sucesso`)
 			} else {
 				toast.error(`Erro ao cadastrar o beneficiário`)
@@ -292,14 +301,16 @@ const Profile = () => {
 
 
 		} catch(error) {
+
 			toast.error(`Erro ao cadastrar o beneficiário`)
-			console.log(error)
-			console.log(`Cathc error`)
-			console.log(error.data)
+			error.response && error.response.data && error.response.data.errors.map(error => toast.error(error))
+			
 		}
 
 		setPageLoading(false)
 	}
+
+	// Início do componente.
 
 	return (
 		<Layout>
@@ -358,7 +369,7 @@ const Profile = () => {
 					</Line>
 					<Line>
 						<div className='halfgrid'>
-							<FormInput label='Pessoas em sua residência' type name='coliving' placeholder='ex. 3' onChange={event => mask(event.target, 'number')} />
+							<FormInput label='Pessoas em sua residência' name='coliving' placeholder='ex. 3' onChange={event => mask(event.target, 'number')} />
 							<FormSelect
 								label='Situação de moradia'
 								name='house_status'
