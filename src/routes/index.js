@@ -30,7 +30,8 @@ const Routes = props => {
         <Route exact path="/login" component={Login} />
         {/* <PrivateRoute path="/dashboard" component={Dashboard} /> */}
         <Route path="/dashboard" component={Dashboard} />
-        <PrivateRoute exact path="/profile" component={Profile} />
+        {/* <PrivateRoute exact path="/profile" component={Profile} /> */}
+        <Route path="/profile" component={Profile} />
         <PrivateRoute exact path="/settings" component={Settings} />
         <PrivateRoute exact path="/info" component={Info} /> */}   
         <Route path="*" component={() => <h1>Page not found</h1>} />

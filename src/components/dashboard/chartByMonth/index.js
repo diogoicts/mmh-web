@@ -9,12 +9,14 @@ const ChartByMonth = () => {
 
   const { byMonth } = store.getState().dashboard
 
-  const line_data = [
-    {
-      "id": "mmh",
-      "data": byMonth,
-    },
-  ]
+  const line_data = useMemo(() => 
+    [
+      {
+        "id": "mmh",
+        "data": byMonth,
+      },
+    ]
+  , [byMonth]) 
 
   return (
     <Container>

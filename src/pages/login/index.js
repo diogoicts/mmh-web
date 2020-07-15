@@ -43,9 +43,11 @@ const Login = () => {
 
   function handleError (error) {
     console.log(error);
+    // eslint-disable-next-line
     if(error.status == 422){
       setValues({ ...values, error: error.data.errors[0]});
     }
+    // eslint-disable-next-line
     if(error.status == 401){
       setValues({ ...values, error: error.data.message });
     }
@@ -60,6 +62,11 @@ const Login = () => {
       try { 
         const response = await api.post("/auth/login", { email, senha });
         login(response.data.data.access_token);
+
+        if(response.data.data) {
+          localStorage.setItem('@mmh/partner_id', response.data.data.parceiro_id)
+        }
+
         history.push("/dashboard");
       } catch (error) {
         handleError(error.response);
